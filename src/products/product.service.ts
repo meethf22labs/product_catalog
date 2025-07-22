@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable } from '@nestjs/common';
 import pool from '../connections/db';
 
@@ -59,7 +60,9 @@ export class ProductsService {
       havingClause = `HAVING AVG(r.value) >= $${params.length}`;
     }
 
-    const whereSQL = whereClauses.length ? `WHERE ${whereClauses.join(' AND ')}` : '';
+    const whereSQL = whereClauses.length
+      ? `WHERE ${whereClauses.join(' AND ')}`
+      : '';
     //console.log(whereSQL);
 
     const queryText = `
